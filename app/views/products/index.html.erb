@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row text-center">
+      <div class="col-lg-7 mx-auto">
+          <h1 class="display-3">Admin Dashboard</h1>
+          <h1 class="display-4">Product List</h1>
+      </div>
+  </div>
+  <div>
+    <% @products.each do |product| %>
+      <div class="row">
+          <div class="col-lg-8 mx-auto">
+              <!-- List group-->
+              <ul class="list-group shadow">
+                  <!-- list group item -->
+                  <li class="list-group-item">
+                      <!-- Custom content-->
+                      <div class="row media align-items-lg-center flex-column flex-lg-row p-3">
+                          <aside class="col-sm-8">
+                            <h3 class="title mb-4"><%= product.name %></h3>
+                            <span class="price h4 text-warning"> 
+                                <span class="currency">IND ₹</span><span class="num"><%= product.price %></span>
+                            </span> 
+                            <p><strong>Category:</strong>    <%= product.category %></p>
+                            <p><strong>Description:</strong> <%= product.desc %></p>
+                            <p><strong>Quantity:</strong>    <%= product.quantity %></p>
+                          </aside>
+                          <aside>
+                            <a href="/products/<%= product.id %>"> 
+                                <% if product.prodimage.attached?%>
+                                    <%= image_tag product.prodimage, style: "width: 200px; height: 200px; border-style: solid; border-width: 0.5px;", class:"img-rounded" %>
+                                <% else %>
+                                    <div class="corners" style="width: 200px; height: 180px; border-style: solid; border-width: 2px;" >No Image for the product</div>
+                                <% end %>
+                            </a>
+                          </aside>
+                      </div> <!-- End -->
+                  </li> <!-- End -->
+              </ul> <!-- End -->
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>

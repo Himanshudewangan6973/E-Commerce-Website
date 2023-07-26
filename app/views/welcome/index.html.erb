@@ -1,0 +1,41 @@
+<div style="font-size:20px; font-family:sans-serif">
+	<% if Current.user %>
+		<p>Logged in as: <%= Current.user.email %></p>
+	<% end %>
+</div>
+<%= form_with url: "search", method: :get do |form| %>
+	<%= form.text_field :key, placeholder:"product name" %>
+	<%= form.submit "Search", class:"btn btn-info glyphicon glyphicon-search"%>
+	<div style="overflow: hidden; padding-right: .5em;">
+</div>
+<% end %>
+<div id="header-hero">
+
+	<div class="header-bg"> <img src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412561/E-commerce%20landing%20page/header/header-image_3x.jpg" alt="header-image" /> </div>
+	<div class="header-content">
+		<p class="heading-1">fashion collection 2022</p>
+		<h1>welcome to uniqu<span class="logo-style">e</span>  store</h1>
+		<h2>Unique Store</h2>
+		<p>The One-Stop Shopping Destination. E-commerce is revolutionizing the way we all shop in India. Why do you want to hop from one store to another</p>
+	</div>
+</div>
+
+<section id="products">
+	
+	<div class="container">
+		<% @products.each do |product| %>
+			<div class="product">
+				<a href="/prod/<%= product.id %>"> 
+					<% if product.prodimage.attached?%>
+						<%= image_tag product.prodimage, style: "width: 140px; height: 180px; display: block" %>
+					<% else %>
+						<div style= "width: 140px; height: 180px; display: block" >No Image for the product</div>
+					<% end %>
+					<figcaption>Rs.<%= product.price %></figcaption>
+					<%= product.name %>
+				</a>
+			</div>
+		<% end %>
+	</div>
+</section>
+<div class="back-to-top"><a href="#header-hero"> <img title="Back to Top" src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412541/E-commerce%20landing%20page/icons/back_-_top_1x.png" alt="back to top"></a> </div>

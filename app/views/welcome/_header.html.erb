@@ -1,0 +1,195 @@
+<style>
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+
+header {
+    width: 100%;
+    height: auto;
+    line-height: auto;
+    text-align: center;
+    font-family: sans-serif;
+    background-color: #f1c40f;
+}
+.brand {
+    width: auto;
+    height: 100%;
+    float: left;
+    margin: 0 0 0 5%;
+}
+
+.menu {
+    width: 60%;
+    height: 100%;
+    float: right;
+}
+.menu ul {
+    width: 100%;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.menu ul a {
+    width: 20%;
+    height: inherit;
+    color: #222;
+    display: inline-block;
+}
+.menu ul a:hover {
+    background-color: #222;
+    color: #fff;
+}
+#menuToggle {
+    display: none;
+}
+.menu-icon {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        width: 100%;
+        height: auto;
+    }
+    .menu ul {
+        display: block;
+        max-height: 0;
+    	overflow: hidden;
+    	-webkit-transition: max-height 0.3s;
+    	-moz-transition: max-height 0.3s;
+        -ms-transition: max-height 0.3s;
+        -o-transition: max-height 0.3s;
+    	transition: max-height 0.3s;
+    }
+    .menu ul a {
+        text-align: left;
+        width: 100%;
+        height: 50px;
+        background-color: #f1c40f;
+        padding: 10px 0px 10px 5%;
+    }
+    .menu-icon {
+        width: 100px;
+        height: inherit;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 60px;
+    }
+    #menuToggle:checked ~ ul {
+        max-height: 350px;
+    }
+    .menu-icon i {
+        font-size: 1.7em;
+    }
+}
+
+</style>
+
+<header>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<a class="navbar-brand" href="/"><%= image_tag('logo.jpeg', id: "drag1", width: "27%") %></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarNav" style="justify-content:center;">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item"><%= link_to 'Categories', "/category", class:"nav-link" %></li>
+				<% if session[:role]=='admin' %>
+					<li class="nav-item"><%= link_to 'Products List', "/products", class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to "Add New Product", new_product_path, class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to "Ordered Products", adminorder_path, class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to "Logout", logout_path, class:"nav-link" %></li>
+				<% end %>
+				<% if !Current.user && session[:role]!='admin' %>
+					<li class="nav-item"><%= link_to 'Products', "/#products", class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to 'Register', sign_up_path, class:"nav-link"%></li>
+					<li class="nav-item"><%= link_to 'Login', sign_in_path, class:"nav-link" %></li>
+				<% end %>
+				<% if Current.user %>
+					<li class="nav-item"><%= link_to 'Past Orders', "pastorders", class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to 'Edit Password', edit_password_path, class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to 'Logout', logout_path, method: :delete, class:"nav-link" %></li>
+				<% end %>
+				<% if session[:role]!='admin' %>
+				<li class="nav-item"><%= link_to "About Us", about_path, class:"nav-link" %></li>
+				<% end %>
+				<% if Current.user %>
+					<%= link_to carts_path do %>
+						<li class="nav-item">
+							<%= image_tag "https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412544/E-commerce%20landing%20page/icons/shopping_cart_1x.png", id:"logo" %>
+						</li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</nav>
+</header>
+	<!--
+	<form class="navbar-form navbar-left" action="/action_page.php">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Search">
+		</div>
+		<button class="btn btn-default">Submit</button>
+	</form>
+
+	<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+	<header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="/"><%= image_tag('logo.jpeg', id: "drag1", width: "27%") %></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<% if session[:role]=='admin' %>
+					<li class="nav-item"><%= link_to 'Products List', "/products", class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to "Add New Product", new_product_path, class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to "Ordered Products", adminorder_path, class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to "Logout", logout_path, class:"nav-link" %></li>
+				<% end %>
+				<% if !Current.user && session[:role]!='admin' %>
+					<li class="nav-item"><%= link_to 'Products', "/#products", class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to 'Register', sign_up_path, class:"nav-link"%></li>
+					<li class="nav-item"><%= link_to 'Login', sign_in_path, class:"nav-link" %></li>
+				<% end %>
+				<% if Current.user %>
+					<li class="nav-item"><%= link_to 'Past Orders', "pastorders", class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to 'Edit Password', edit_password_path, class:"nav-link" %></li>
+					<li class="nav-item"><%= link_to 'Logout', logout_path, method: :delete, class:"nav-link" %></li>
+				<% end %>
+				<% if session[:role]!='admin' %>
+					<li class="nav-item"><%= link_to "Contact Us", contact_path, class:"nav-link" %></li>
+				<% end %>
+				<% if Current.user %>
+					<%= link_to carts_path do %>
+						<li class="nav-item">
+							<%= image_tag "https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412544/E-commerce%20landing%20page/icons/shopping_cart_1x.png", id:"logo" %>
+						</li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</nav>
+</header>
+-->

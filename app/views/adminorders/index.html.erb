@@ -1,0 +1,134 @@
+<style>
+.bodyorder{
+	margin: 0;
+	padding: 0;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.orderContainer{
+	width: 100%;
+    margin:auto;
+    margin-top:30px;
+    margin-bottom:30px;
+	background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px #1687d933;
+}
+
+
+.order-Items{
+	margin: auto;
+	width: 90%;
+	height: 30%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.image-box{
+    margin:-20px;
+	width: 150px;
+	text-align: center;
+}
+.about{
+    margin-top:30px;
+	height: 100%;
+	width: 40%;
+}
+.title{
+	padding-top: 10px;
+	line-height: 10px;
+	font-size: 26px;
+	font-family: 'Open Sans';
+	font-weight: 800;
+	color: #202020;
+}
+
+.btn{
+	width: 180px;
+	height: 40px;
+	background-color: #d9d9d9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	font-family: 'Open Sans';
+	font-weight: 900;
+	color: #202020;
+	cursor: pointer;
+}
+
+.prices{
+    margin-top:30px;	
+    height: 100%;
+	text-align: right;
+}
+
+
+
+hr{
+    height:2px;
+    background:black;
+	width: 66%;
+	float: right;
+	margin-right: 5%;
+}
+.checkout{
+	float: right;
+	margin-right: 5%;
+	width: 45%;
+}
+
+</style>
+
+<head>
+	<title>Shopping order UI</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+</head>
+<div class="bodyorder">
+   <div class="orderContainer">
+   	   <div class="Header">
+   	        <h3 class="Heading">Orders</h3>
+   	   </div>
+
+        <% @orders.each do |order| %>
+			<% if Product.exists?(order.pid) %>
+				<% @prod=Product.find(order.pid) %>
+				<div class="order-Items">
+					<div class="image-box">
+					<%= image_tag @prod.prodimage, style: "width: 180px; height: 120px; display: block" %>
+					</div>
+					<div class="about">
+					<% @user=User.find(order.uid) %>
+						<h1 class="title" style="">Buyer Name - <%= @user.name %></h1>
+					
+						<h1 class="title">Product Name - <%= @prod.name %></h1><br><br>
+						<h3 class="subtitle">Quantity - <%= order.quan %></h3>
+						<!--<%= image_tag('veg.png', id: "drag1", height: "30px") %>-->
+					</div>
+					<div class="prices">
+						<div class="amount">Price - ₹<%= order.price %></div>
+						<div>Order status - <span class="text-success"><%= order.status %></span></div>
+						<div>Payment status - 
+							<% if order.payid=="Payment Pending" %> 
+								<span class="text-warning"><%= order.payid %></span>
+							<% else %>
+								<span class="text-success"><%= order.payid %></span>
+							<% end %>
+						</div>
+						<div class="checkout">
+							<% if order.status != "Item Delivered" %>
+								<a href="adminorder/<%= order.id %>" class="btn btn-warning btn-rounded float-right" style="margin-top:10px;">Deliver item</a>
+							<% else %>
+							<span class="text-success">Item Delivered</span>
+							<% end %>
+						</div>
+					</div>
+				</div>
+				<hr>
+			<% end %>
+        <% end %>
+   </div>
+</div>

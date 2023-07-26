@@ -1,0 +1,208 @@
+.bodyCart {
+	margin: 0;
+	padding: 0;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 30px;
+}
+
+.CartContainer {
+	width: 85%;
+	height: auto;
+	background-color: #ffffff;
+	border-radius: 20px;
+	box-shadow: 0px 10px 20px #1687d933;
+	padding-top: 20px;
+	padding-bottom: 20px;
+    margin-bottom:30px;
+	justify-content: center;
+}
+a:link {
+	color: rgb(11, 12, 11);
+	background-color: transparent;
+	text-decoration: none;
+  }
+  a:visited {
+	color: rgb(50, 10, 249);
+	background-color: transparent;
+	text-decoration: none;
+  }
+
+.Header {
+	margin: auto;
+	width: 90%;
+	height: 15%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.Heading {
+	font-size: 20px;
+	font-family: 'Open Sans';
+	font-weight: 700;
+	color: #2F3841;
+}
+
+.Action {
+	font-size: 14px;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #E44C4C;
+	cursor: pointer;
+	border-bottom: 1px solid #E44C4C;
+}
+
+.Cart-Items{
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.image-box {
+	width: 15%;
+	text-align: center;
+}
+
+.about {
+	height: 100%;
+	width: 24%;
+}
+
+.title {
+	padding-top: 10px;
+	line-height: 10px;
+	font-size: 32px;
+	font-family: 'Open Sans';
+	font-weight: 800;
+	color: #202020;
+}
+
+.subtitle {
+	line-height: 10px;
+	font-size: 18px;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #909090;
+}
+
+.counter {
+	width: 15%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.opr {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #d9d9d9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	font-family: 'Open Sans';
+	font-weight: 900;
+	color: #202020;
+	cursor: pointer;
+}
+
+.count {
+	font-size: 20px;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #202020;
+}
+
+.prices {
+	height: 100%;
+	text-align: right;
+}
+
+.amount {
+	padding-top: 20px;
+	font-size: 26px;
+	font-family: 'Open Sans';
+	font-weight: 800;
+	color: #202020;
+}
+
+.save {
+	padding-top: 5px;
+	font-size: 14px;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #1687d9;
+	cursor: pointer;
+}
+
+.remove {
+	padding-top: 5px;
+	font-size: 14px;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #E44C4C;
+	cursor: pointer;
+}
+
+.pad {
+	margin-top: 5px;
+}
+
+.hrCart {
+	width: 66%;
+	float: right;
+	margin-right: 5%;
+}
+
+.checkoutCart {
+	float: right;
+	margin-right: 5%;
+	width: 28%;
+}
+
+.total {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.Subtotal {
+	font-size: 22px;
+	font-family: 'Open Sans';
+	font-weight: 700;
+	color: #202020;
+}
+
+.items {
+	font-size: 16px;
+	font-family: 'Open Sans';
+	font-weight: 500;
+	color: #909090;
+	line-height: 10px;
+}
+
+.total-amount {
+	font-size: 36px;
+	font-family: 'Open Sans';
+	font-weight: 900;
+	color: #202020;
+}
+
+.buttonCart {
+	margin-top: 10px;
+	width: 100%;
+	height: 40px;
+	border: none;
+	background: linear-gradient(to bottom right, #B8D7FF, #8EB7EB);
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 16px;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #202020;
+}

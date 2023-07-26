@@ -1,0 +1,90 @@
+<style>
+	.link-dark {
+		color: black;
+		background-color: transparent;
+		text-decoration: none;
+	}
+</style>
+
+<div style="justify-content:right; margin-top:-30px">
+	<a href="/#products" class="link-dark"> 
+		<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+		</svg> Go Back
+	</a>
+</div>
+
+<div class="container bdy">
+  <p class="title mb-4 text-center"><span>Details</span></p>
+  <div class="card">
+	<div class="row">
+		<aside class="col-sm-5 border-right">
+			<article class="gallery-wrap">
+					<div class="product">
+							<% if @products.prodimage.attached?%>
+								<%= image_tag @products.prodimage, style: "width: 450px; height: 450px; display: block;" %>
+							<% else %>
+								<div style= "width: 450px; height: 450px; display: block" >No Image for the product</div>
+							<% end %>
+					</div><!-- slider-product.// -->
+			</article> <!-- gallery-wrap .end// -->
+		</aside>
+		<aside class="col-sm-7">
+			<article class="card-body p-5">
+				<h3 class="title mb-3"><%= @products.name %></h3>
+				<p class="price-detail-wrap"> 
+				<span class="price h3 text-warning"> 
+					<span class="currency">IND ₹</span><span class="num"><%= @products.price %></span>
+				</span> 
+				</p> <!-- price-detail-wrap .// -->
+				<hr>
+				<dl class="item-property">
+					<dt>Category</dt>
+					<dd><p><%= @products.category %></p></dd>
+				</dl>
+				<dl class="item-property">
+					<dt  class="product-description">Description</dt>
+					<dd><p><%= @products.desc %></p></dd>
+				</dl>
+				<hr>
+				<div class="row">
+					<div class="col-sm-10">
+						<dl class="param param-inline">
+							<dt>Quantity: </dt>
+							<dd><%= @products.quantity %></dd>
+						</dl>  <!-- item-property .// -->
+					</div> <!-- col.// -->
+				</div> <!-- row.// -->
+				<% if Current.user %>
+					<!--
+					<div class="action">
+						<button class="add-to-cart btn btn-default" type="button"><%= link_to "Add #{@products.name} to cart", carts_path(:product_id => @products.id) %></button>
+					</div>
+					-->
+					<div>
+						<%= form_with model: @carts, url: carts_path, method: :post, local: true do |form| %>
+							<div class="col">
+								<div class="form-col col-sm-5">
+									<h5>Quantity</h5>
+									<input type="number" value="1" id="quan" name="quan" min="1" max="<%= @products.quantity %>"/>
+									<input type="hidden" id="pid" name="custId" value="<%= @products.id %>">
+								</div>
+								<div class="form-col col-sm-5">
+									<h5>Max Quantity: <%= @products.quantity %></h5>
+								</div>
+							</div>
+							<span style="text-align:center"><%= form.submit class:"add-to-cart btn btn-success col-md-3" %>
+						<% end %>
+						<% if @products.quantity.to_i == 0 %>
+						
+						<h2>Out of Stock </h2>
+					</div>
+				<% end %>
+				<% end %>
+			</article> <!-- card-body.// -->
+		</aside> <!-- col.// -->
+	</div> <!-- row.// -->
+  </div> <!-- card.// -->
+</div>
+<!--container.//-->
+<hr>
